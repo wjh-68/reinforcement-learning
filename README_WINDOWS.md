@@ -37,4 +37,6 @@ python --version
 ```Shell
 python -m pip install numpy scipy matplotlib tqdm ipython jupyterlab ipykernel pandas
 python -m pip install gym==0.21.0
+pip install pyglet==1.5.27
+pip install "scikit-learn<1.4"
 ```
