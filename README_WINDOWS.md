@@ -26,17 +26,47 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 # & d:\WJH\Documents\reinforcement-learning\.venv\Scripts\Activate.ps1
 ```
 
-2. 检查 Python 是否安装成功
+1. 检查 Python 是否安装成功
 
 ```Shell
 python --version
 ```
 
-3. 安装必须的 python pkg
+1. 安装必须的 python pkg
 
 ```Shell
 python -m pip install numpy scipy matplotlib tqdm ipython jupyterlab ipykernel pandas
 python -m pip install gym==0.21.0
 pip install pyglet==1.5.27
 pip install "scikit-learn<1.4"
+pip install pandas
 ```
+
+# Linux (jetson) 下使用
+
+## 环境部署
+
+```bash
+conda create -n rl_env python=3.7 -y
+conda activate rl_env
+sudo apt-get update && sudo apt-get install -y build-essential swig cmake zlib1g-dev libjpeg-dev git
+pip install --upgrade pip==21.3.1 setuptools==59.5.0 wheel==0.37.1 Cython==0.29.28
+
+# TODO: Tensorflow 安装
+
+# 然后
+pip install gym==0.17.3 atari-py autorom
+AutoROM --accept-license
+```
+
+## atari-py使用
+
+请参考[atari-py](https://github.com/openai/atari-py#roms)  
+下载 roms压缩文件, 并运行命令:  
+
+```bash
+python -m atari_py.import_roms <path to roms folder>
+```
+
+之后,才能在 py脚本中正确导入环境  
+`env = gym.envs.make("Breakout-v0")`  
